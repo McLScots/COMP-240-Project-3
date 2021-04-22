@@ -1,0 +1,12 @@
+2021-04-06 16:06:37,653 fail2ban.server         [1550]: INFO    Changed logging target to /var/log/fail2ban.log for Fail2ban v0.9.3
+2021-04-06 16:06:37,658 fail2ban.filter         [1550]: INFO    Log rotation detected for /var/log/fail2ban.log.9
+2021-04-06 16:33:45,309 fail2ban.actions        [1550]: NOTICE  [repeatoffender] Ban 27.74.252.208
+2021-04-06 16:34:05,662 fail2ban.actions        [1550]: NOTICE  [repeatoffender] Ban 45.35.20.209
+2021-04-06 16:34:26,015 fail2ban.actions        [1550]: NOTICE  [repeatoffender] Ban 58.218.199.166
+2021-04-06 16:01:40,939 fail2ban.database       [1550]: INFO    Connected to fail2ban persistent database '/var/lib/fail2ban/fail2ban.sqlite3'
+2021-04-06 16:01:41,043 fail2ban.jail           [1550]: INFO    Creating new jail 'sshd'
+2021-04-06 16:01:49,596 fail2ban.actions        [1550]: NOTICE  [repeatoffender] Ban 1.85.62.39
+2021-04-06 16:02:09,959 fail2ban.actions        [1550]: NOTICE  [repeatoffender] Ban 101.227.249.53
+2021-04-06 16:02:30,314 fail2ban.actions        [1550]: NOTICE  [repeatoffender] Ban 104.148.71.143
+2021-04-06 16:02:50,670 fail2ban.actions        [1550]: NOTICE  [repeatoffender] Ban 104.217.216.147
+2021-04-06 16:03:11,029 fail2ban.actions        [1550]: NOTICE  [repeatoffender] Ban 104.238.141.45
