@@ -21,7 +21,7 @@ def stage3(df):
         df.loc[a, 'city'] = city
         df.loc[a, 'latitude'] = latitude
         df.loc[a, 'longitude'] = longitude
-        df.to_csv('Stage3.csv')
+    df.to_csv('Stage3.csv')
     return df
         
     
