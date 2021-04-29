@@ -7,7 +7,7 @@ geo_lookup = GeoLookup("004fe3a3435401b81ac4ea493a0834cf")
 
 def stage3(df):
     for a in df.index:
-        current_ip = df.loc[a, 'ip']
+        current_ip = df.loc[a, 'IP']
         location = geo_lookup.get_location(current_ip)
         continent = location["continent_name"]
         country = location["country_name"]
@@ -15,14 +15,15 @@ def stage3(df):
         city = location["city"]
         latitude = location["latitude"]
         longitude = location["longitude"]
-        df['continent'] = continent
-        df['country'] = country
-        df['region'] = region
-        df['city'] = city
-        df['latitude'] = latitude
-        df['longitude'] = longitude
-        return df
-    pd.to_csv('Stage3.csv')
+        df.loc[a, 'continent'] = continent
+        df.loc[a, 'country'] = country
+        df.loc[a, 'region'] = region
+        df.loc[a, 'city'] = city
+        df.loc[a, 'latitude'] = latitude
+        df.loc[a, 'longitude'] = longitude
+        df.to_csv('Stage3.csv')
+    return df
+        
     
         
         
