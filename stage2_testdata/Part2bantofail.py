@@ -10,31 +10,36 @@ Part 2 Presentation 1 SandBox/Work
 """
 
 import pandas as pd
+import sys
+import subprocess
+max_rows = None
+max_cols = None
+pd.set_option("display.max_rows", max_rows, "display.max_columns", max_cols)
+sys.stdout = open('step2log', 'w')
 
-# Make the Dataset By Hand
 
-bandict = {'date':[pd.to_datetime('2021-04-06 16:08:17,141'),pd.to_datetime('2021-04-06 16:08:57,864'),
-                   pd.to_datetime('2021-04-06 16:09:18,238'),pd.to_datetime('2021-04-06 16:09:39,100'),
-                   pd.to_datetime('2021-04-06 16:09:59,778'),pd.to_datetime('2021-04-06 16:10:20,315'),
-                   pd.to_datetime('2021-04-06 16:10:40,667'),pd.to_datetime('2021-04-06 16:11:01,018'),
-                   pd.to_datetime('2021-04-06 16:11:21,372'),pd.to_datetime('2021-04-06 16:11:41,725')],
-           'ip':['117.21.173.4','121.18.238.12','121.18.238.19','121.18.238.20',
-                 '121.18.238.22','121.18.238.31','121.18.238.32','121.18.238.6',
-                 '121.18.238.7','121.18.238.8']}
-
-ipdataset = pd.DataFrame(data=bandict)
-print(ipdataset)
+def csvtoframe(sourcefile):
+    # Read the csv file
+    finished = pd.read_csv(sourcefile, names = ['datetime','ip'], parse_dates= True, infer_datetime_format= True)
+    return(finished)
 
 # Get Stats from the Dataset
 
+bandict = csvtoframe('/Users/calbigham/Documents/MonmouthCollege/Year2/Semester 2/COMP240/COMP240Project3/stage1_output.csv')
+print(bandict)
 print('\n')
 print('Number of Attempts by IP:')
-valuecount = ipdataset['ip'].value_counts()
+valuecount = bandict['ip'].value_counts()
 print(valuecount)
 
 print('\n')
 print('Number of Total IPs and entries')
-numunique = (len(pd.unique(ipdataset['ip'])))
-totalnumber = ipdataset.shape[0]
+numunique = (len(pd.unique(bandict['ip'])))
+totalnumber = bandict.shape[0]
 print('Total Unique IPs: ' + str(numunique))
 print('Total Entries: ' + str(totalnumber))
+
+## Open the log file for bells and whistles
+log = '/Users/calbigham/Documents/MonmouthCollege/Year2/Semester 2/COMP240/COMP240Project3/stage2_testdata/step2log'
+textviewerpath = '/System/Applications/TextEdit.app/Contents/MacOS/TextEdit'
+subprocess.Popen([textviewerpath,log])
