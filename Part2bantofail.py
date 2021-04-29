@@ -25,7 +25,7 @@ def csvtoframe(sourcefile):
 
 # Get Stats from the Dataset
 
-bandict = csvtoframe('/Users/calbigham/Documents/MonmouthCollege/Year2/Semester 2/COMP240/COMP240Project3/stage1_output.csv')
+bandict = csvtoframe('stage1_output.csv')
 print(bandict)
 print('\n')
 print('Number of Attempts by IP:')
@@ -40,6 +40,6 @@ print('Total Unique IPs: ' + str(numunique))
 print('Total Entries: ' + str(totalnumber))
 
 ## Open the log file for bells and whistles
-log = '/Users/calbigham/Documents/MonmouthCollege/Year2/Semester 2/COMP240/COMP240Project3/stage2_testdata/step2log'
+log = '/Users/calbigham/Documents/MonmouthCollege/Year2/Semester 2/COMP240/COMP240Project3/step2log'
 textviewerpath = '/System/Applications/TextEdit.app/Contents/MacOS/TextEdit'
 subprocess.Popen([textviewerpath,log])
