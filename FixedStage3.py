@@ -3,24 +3,26 @@ import plotly as pl
 import ipstack as i
 from ipstack import GeoLookup
 
-geo_lookup = GeoLookup("004fe3a3435401b81ac4ea493a0834cf")
+geo_lookup = GeoLookup("ef0cd3eb3df26d42fd82ff1586b7dd04")
 
 def stage3(df):
-    for a in df.index:
-        current_ip = df.loc[a, 'IP']
+    uniques = pd.unique(df['ip'])
+    for a in uniques:
+        current_ip = a
         location = geo_lookup.get_location(current_ip)
+        print(location)
         continent = location["continent_name"]
         country = location["country_name"]
         region = location["region_name"]
         city = location["city"]
         latitude = location["latitude"]
         longitude = location["longitude"]
-        df.loc[a, 'continent'] = continent
-        df.loc[a, 'country'] = country
-        df.loc[a, 'region'] = region
-        df.loc[a, 'city'] = city
-        df.loc[a, 'latitude'] = latitude
-        df.loc[a, 'longitude'] = longitude
+        df.loc[df['ip'] == current_ip ,'continent'] = continent
+        df.loc[df['ip'] == current_ip , 'country'] = country
+        df.loc[df['ip'] == current_ip , 'region'] = region
+        df.loc[df['ip'] == current_ip , 'city'] = city
+        df.loc[df['ip'] == current_ip , 'latitude'] = latitude
+        df.loc[df['ip'] == current_ip , 'longitude'] = longitude
     df.to_csv('Stage3.csv')
     return df
         

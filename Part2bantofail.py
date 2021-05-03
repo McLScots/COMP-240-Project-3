@@ -11,35 +11,26 @@ Part 2 Presentation 1 SandBox/Work
 
 import pandas as pd
 import sys
-import subprocess
 max_rows = None
 max_cols = None
 pd.set_option("display.max_rows", max_rows, "display.max_columns", max_cols)
-sys.stdout = open('step2log', 'w')
+sys.stdout = open('runtimelog', 'w')
 
 
-def csvtoframe(sourcefile):
+def stage2(sourcefile):
     # Read the csv file
     finished = pd.read_csv(sourcefile, names = ['datetime','ip'], parse_dates= True, infer_datetime_format= True)
+    # Get Stats from the Dataset
+    print(finished)
+    print('\n')
+    print('Number of Attempts by IP:')
+    valuecount = finished['ip'].value_counts()
+    print(valuecount)
+
+    print('\n')
+    print('Number of Total IPs and entries')
+    numunique = (len(pd.unique(finished['ip'])))
+    totalnumber = finished.shape[0]
+    print('Total Unique IPs: ' + str(numunique))
+    print('Total Entries: ' + str(totalnumber))
     return(finished)
-
-# Get Stats from the Dataset
-
-bandict = csvtoframe('stage1_output.csv')
-print(bandict)
-print('\n')
-print('Number of Attempts by IP:')
-valuecount = bandict['ip'].value_counts()
-print(valuecount)
-
-print('\n')
-print('Number of Total IPs and entries')
-numunique = (len(pd.unique(bandict['ip'])))
-totalnumber = bandict.shape[0]
-print('Total Unique IPs: ' + str(numunique))
-print('Total Entries: ' + str(totalnumber))
-
-## Open the log file for bells and whistles
-log = '/Users/calbigham/Documents/MonmouthCollege/Year2/Semester 2/COMP240/COMP240Project3/step2log'
-textviewerpath = '/System/Applications/TextEdit.app/Contents/MacOS/TextEdit'
-subprocess.Popen([textviewerpath,log])
