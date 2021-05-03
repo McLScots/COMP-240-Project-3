@@ -20,8 +20,11 @@ pd.set_option("display.max_rows", max_rows, "display.max_columns", max_cols)
 sys.stdout = open('runtimelog', 'w')
 
 # Main Function: Pulling it all together
+def main():
+    s1.stage1()
+    dataframe1 = s2.stage2('stage1_output.csv')
+    s3.stage3(dataframe1)
+    #s4.stage4('Stage3.csv')
 
-s1.stage1()
-dataframe1 = s2.stage2('stage1_output.csv')
-s3.stage3(dataframe1)
-#s4.stage4('Stage3.csv')
+if __name__ == "__main__":
+    main()
