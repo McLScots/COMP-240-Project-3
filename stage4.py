@@ -14,6 +14,9 @@ def stage4(stg3csv):
     for current_ip in locdata['ip']:
         numattempts = (locdata['ip'] == current_ip).sum()
         locdata.loc[locdata['ip'] == current_ip , 'num attempts'] = numattempts
-    fig = px.scatter_geo(data_frame = locdata, lat = 'latitude', lon = 'longitude', color = 'continent', size = 'num attempts', hover_name='ip', projection='natural earth')
-    fig.show()
-    
+    unique_loc = locdata.groupby(by='country',as_index=False).agg({'ip': pd.Series.nunique})
+    fig1 = px.bar(unique_loc,x='country',y="ip",labels={'ip':"Unique IP's"},text='ip')
+    fig1.update_traces(texttemplate='%{text:.2s}',textposition='outside')
+    fig2 = px.scatter_geo(data_frame = locdata, lat = 'latitude', lon = 'longitude', color = 'continent', size = 'num attempts', hover_name='ip', projection='natural earth')
+    fig1.show()
+    fig2.show()
