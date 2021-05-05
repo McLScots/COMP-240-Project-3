@@ -7,10 +7,8 @@ geo_lookup = GeoLookup("ef0cd3eb3df26d42fd82ff1586b7dd04")
 
 def stage3(df):
     uniques = pd.unique(df['ip'])
-    for a in uniques:
-        current_ip = a
+    for current_ip in uniques:
         location = geo_lookup.get_location(current_ip)
-        print(location)
         continent = location["continent_name"]
         country = location["country_name"]
         region = location["region_name"]

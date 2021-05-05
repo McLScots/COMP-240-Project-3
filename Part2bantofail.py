@@ -21,8 +21,6 @@ def stage2(sourcefile):
     # Read the csv file
     finished = pd.read_csv(sourcefile, names = ['datetime','ip'], parse_dates= True, infer_datetime_format= True)
     # Get Stats from the Dataset
-    print(finished)
-    print('\n')
     print('Number of Attempts by IP:')
     valuecount = finished['ip'].value_counts()
     print(valuecount)

@@ -11,7 +11,6 @@ def stage1():
     path = 'fail2banlogs'
     # loop through all fail2ban logs in the log directory
     for filename in os.listdir(path):
-        print(filename)
         file = open(path+'/'+filename,'r').read()
         for line in re.findall(".*fail2ban.actions.*NOTICE.*",file):
             date = re.split(",",line)[0]
